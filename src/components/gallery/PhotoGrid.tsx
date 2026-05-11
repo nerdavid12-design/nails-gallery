@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useTranslation } from "@/lib/i18n/useTranslation";
 import PhotoCard from "./PhotoCard";
@@ -10,17 +10,21 @@ import type { Photo } from "@/types";
 interface PhotoGridProps {
   initialPhotos: Photo[];
   initialCursor: string | null;
+  autoScroll?: boolean;
 }
 
 export default function PhotoGrid({
   initialPhotos,
   initialCursor,
+  autoScroll = false,
 }: PhotoGridProps) {
   const { t } = useTranslation();
   const [photos, setPhotos] = useState<Photo[]>(initialPhotos);
   const [cursor, setCursor] = useState<string | null>(initialCursor);
   const [loading, setLoading] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [lastInteractionTime, setLastInteractionTime] = useState(Date.now());
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const loadMore = useCallback(async () => {
     if (loading || !cursor) return;
@@ -36,6 +40,30 @@ export default function PhotoGrid({
       setLoading(false);
     }
   }, [cursor, loading]);
+
+  const handleInteraction = useCallback(() => {
+    setLastInteractionTime(Date.now());
+  }, []);
+
+  // Auto-scroll effect
+  useEffect(() => {
+    if (!autoScroll || !containerRef.current) return;
+
+    const scrollInterval = setInterval(() => {
+      const now = Date.now();
+      // Only scroll if no user interaction in the last 3 minutes
+      if (now - lastInteractionTime > 180000) {
+        if (containerRef.current) {
+          containerRef.current.scrollBy({
+            top: 400, // Scroll down one photo card height + gap
+            behavior: "smooth",
+          });
+        }
+      }
+    }, 4000); // Scroll every 4 seconds
+
+    return () => clearInterval(scrollInterval);
+  }, [autoScroll, lastInteractionTime]);
 
   const { ref: sentinelRef } = useInView({
     onChange: (inView) => { if (inView) loadMore(); },
@@ -54,12 +82,21 @@ export default function PhotoGrid({
 
   return (
     <>
-      <div className="mx-auto flex max-w-[470px] flex-col gap-4 pb-8">
+      <div
+        ref={containerRef}
+        className="mx-auto flex max-w-[470px] flex-col gap-4 pb-8"
+        onClick={handleInteraction}
+        onScroll={handleInteraction}
+        onTouchStart={handleInteraction}
+      >
         {photos.map((photo) => (
           <PhotoCard
             key={photo.id}
             photo={photo}
-            onClick={() => setSelectedPhoto(photo)}
+            onClick={() => {
+              handleInteraction();
+              setSelectedPhoto(photo);
+            }}
           />
         ))}
       </div>

@@ -24,6 +24,7 @@ export default async function GalleryPage() {
       <PhotoGrid
         initialPhotos={error ? [] : displayPhotos}
         initialCursor={error ? null : nextCursor}
+        autoScroll={true}
       />
     </div>
   );
