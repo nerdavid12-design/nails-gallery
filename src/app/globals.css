@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-nails-magenta: #FF00FF;
+  --color-nails-magenta-dark: #CC00CC;
+  --color-nails-magenta-deep: #990099;
+  --color-nails-green: #39FF14;
+  --color-nails-green-dim: #2BCC10;
+  --color-nails-cyan: #00FFFF;
+  --color-nails-dark: #1A0A1A;
+  --color-nails-dark-surface: #2D0A2D;
+  --color-nails-white: #FFFFFF;
+  --color-nails-gray: #A0A0A0;
+
+  --font-display: var(--font-space-grotesk), var(--font-rubik), sans-serif;
+  --font-body: var(--font-rubik), var(--font-space-grotesk), sans-serif;
+
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.4s ease-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(255, 0, 255, 0.8), 0 0 60px rgba(57, 255, 20, 0.3); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-nails-dark);
+  color: var(--color-nails-white);
+  font-family: var(--font-body);
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+::selection {
+  background: var(--color-nails-magenta);
+  color: white;
+}
+
+input, textarea, button {
+  font-family: inherit;
 }
