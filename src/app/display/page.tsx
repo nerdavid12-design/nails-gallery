@@ -12,7 +12,7 @@ function GridDisplay({ photos }: { photos: Photo[] }) {
     return (
       <div className="flex h-full items-center justify-center flex-col gap-4">
         <div className="font-display text-7xl font-bold text-nails-magenta animate-pulse-glow tracking-widest">
-          NAILS
+          NAILZ
         </div>
         <div className="text-nails-gray text-xl">מחכים לתמונות ראשונות...</div>
       </div>
@@ -64,7 +64,7 @@ function SlideshowDisplay({
     return (
       <div className="flex h-full items-center justify-center">
         <div className="font-display text-7xl font-bold text-nails-magenta animate-pulse-glow tracking-widest">
-          NAILS
+          NAILZ
         </div>
       </div>
     );
@@ -271,7 +271,7 @@ export default function DisplayPage() {
 
       {/* Subtle branding */}
       <div className="absolute bottom-3 right-4 text-white/10 font-display font-bold text-xs select-none pointer-events-none tracking-widest">
-        NAILS
+        NAILZ
       </div>
     </div>
   );

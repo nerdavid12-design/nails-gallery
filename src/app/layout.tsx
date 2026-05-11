@@ -18,12 +18,12 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "NAILS | מחקר תרבות הלק ג׳ל",
+  title: "NAILZ | מחקר תרבות הלק ג׳ל",
   description:
-    "Share your photos from the NAILS exhibit at Shaham Culture Lab, Jerusalem",
+    "Share your photos from the NAILZ exhibit at Shaham Culture Lab, Jerusalem",
   openGraph: {
-    title: "NAILS | מחקר תרבות הלק ג׳ל",
-    description: "Share your photos from the NAILS exhibit",
+    title: "NAILZ | מחקר תרבות הלק ג׳ל",
+    description: "Share your photos from the NAILZ exhibit",
     type: "website",
   },
 };

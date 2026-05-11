@@ -1,6 +1,6 @@
 const translations = {
   he: {
-    siteTitle: "NAILS",
+    siteTitle: "NAILZ",
     subtitle: "מחקר תרבות הלק ג׳ל",
     uploadTitle: "הצטלמת? שתפ/י!",
     uploadButton: "העלאת תמונה",
@@ -35,7 +35,7 @@ const translations = {
     photoCount: "תמונות",
   },
   en: {
-    siteTitle: "NAILS",
+    siteTitle: "NAILZ",
     subtitle: "Gel Nail Culture Research",
     uploadTitle: "Took a photo? Share it!",
     uploadButton: "Upload Photo",
