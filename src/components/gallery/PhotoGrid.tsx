@@ -25,9 +25,10 @@ export default function PhotoGrid({
   const loadMore = useCallback(async () => {
     if (loading || !cursor) return;
     setLoading(true);
-
     try {
-      const res = await fetch(`/api/photos?limit=20&cursor=${encodeURIComponent(cursor)}`);
+      const res = await fetch(
+        `/api/photos?limit=20&cursor=${encodeURIComponent(cursor)}`
+      );
       const data = await res.json();
       setPhotos((prev) => [...prev, ...data.photos]);
       setCursor(data.nextCursor);
@@ -37,11 +38,9 @@ export default function PhotoGrid({
   }, [cursor, loading]);
 
   const { ref: sentinelRef } = useInView({
-    onChange: (inView) => {
-      if (inView) loadMore();
-    },
+    onChange: (inView) => { if (inView) loadMore(); },
     threshold: 0,
-    rootMargin: "200px",
+    rootMargin: "300px",
   });
 
   if (photos.length === 0) {
@@ -55,7 +54,7 @@ export default function PhotoGrid({
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="mx-auto flex max-w-[470px] flex-col gap-4 pb-8">
         {photos.map((photo) => (
           <PhotoCard
             key={photo.id}
@@ -66,9 +65,9 @@ export default function PhotoGrid({
       </div>
 
       {cursor && (
-        <div ref={sentinelRef} className="flex justify-center py-8">
+        <div ref={sentinelRef} className="flex justify-center py-6">
           {loading && (
-            <p className="text-sm text-nails-gray">{t("loadingMore")}</p>
+            <p className="text-sm text-nails-gray/60">{t("loadingMore")}</p>
           )}
         </div>
       )}
