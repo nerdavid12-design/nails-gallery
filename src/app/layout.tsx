@@ -36,6 +36,13 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl" className={`${spaceGrotesk.variable} ${rubik.variable}`}>
       <body>
+        {/* Global background: exhibit poster, blurred + darkened */}
+        <div
+          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url(/nails-bg.jpg)" }}
+        >
+          <div className="absolute inset-0 bg-nails-dark/80 backdrop-blur-xl" />
+        </div>
         <LanguageProvider>
           <Header />
           <main className="relative flex-1">{children}</main>
