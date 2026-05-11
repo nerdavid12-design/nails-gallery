@@ -23,7 +23,7 @@ export default function PhotoGrid({
   const [cursor, setCursor] = useState<string | null>(initialCursor);
   const [loading, setLoading] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
-  const [lastInteractionTime, setLastInteractionTime] = useState(Date.now());
+  const [lastInteractionTime, setLastInteractionTime] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const loadMore = useCallback(async () => {
@@ -47,18 +47,13 @@ export default function PhotoGrid({
 
   // Auto-scroll effect
   useEffect(() => {
-    if (!autoScroll || !containerRef.current) return;
+    if (!autoScroll) return;
 
     const scrollInterval = setInterval(() => {
       const now = Date.now();
       // Only scroll if no user interaction in the last 3 minutes
       if (now - lastInteractionTime > 180000) {
-        if (containerRef.current) {
-          containerRef.current.scrollBy({
-            top: 400, // Scroll down one photo card height + gap
-            behavior: "smooth",
-          });
-        }
+        window.scrollBy({ top: 400, behavior: "smooth" });
       }
     }, 4000); // Scroll every 4 seconds
 
