@@ -3,7 +3,7 @@ import { createAnonClient } from "@/lib/supabase/server";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
-  const limit = Math.min(Number(searchParams.get("limit")) || 20, 50);
+  const limit = Math.min(Number(searchParams.get("limit")) || 20, 200);
   const cursor = searchParams.get("cursor");
 
   const supabase = createAnonClient();
