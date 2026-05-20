@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Rubik } from "next/font/google";
+import { Space_Grotesk, Rubik, VT323 } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -15,6 +15,12 @@ const rubik = Rubik({
   variable: "--font-rubik",
   subsets: ["latin", "hebrew"],
   weight: ["400", "500", "700"],
+});
+
+const vt323 = VT323({
+  variable: "--font-vt323",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -34,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="he" dir="rtl" className={`${spaceGrotesk.variable} ${rubik.variable}`}>
+    <html lang="he" dir="rtl" className={`${spaceGrotesk.variable} ${rubik.variable} ${vt323.variable}`}>
       <body>
         {/* Global background: exhibit poster, blurred + darkened */}
         <div

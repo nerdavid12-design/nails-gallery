@@ -14,8 +14,10 @@
 
   --font-display: var(--font-space-grotesk), var(--font-rubik), sans-serif;
   --font-body: var(--font-rubik), var(--font-space-grotesk), sans-serif;
+  --font-pixel: var(--font-vt323), monospace;
 
   --animate-spin-slow: spin 20s linear infinite;
+  --animate-spin-reverse: spin-reverse 25s linear infinite;
   --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
   --animate-float: float 3s ease-in-out infinite;
   --animate-fade-in: fade-in 0.3s ease-out;
@@ -25,6 +27,11 @@
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.5); }
   50% { box-shadow: 0 0 40px rgba(255, 0, 255, 0.8), 0 0 60px rgba(57, 255, 20, 0.3); }
+}
+
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
 }
 
 @keyframes float {
@@ -40,6 +47,31 @@
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Neon text glow utilities */
+.text-glow-magenta {
+  text-shadow: 0 0 8px #FF00FF, 0 0 20px rgba(255, 0, 255, 0.7), 0 0 50px rgba(255, 0, 255, 0.4);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 8px #39FF14, 0 0 20px rgba(57, 255, 20, 0.7), 0 0 50px rgba(57, 255, 20, 0.4);
+}
+
+/* Scanlines overlay — matches poster's horizontal stripe texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 3px
+  );
 }
 
 * {

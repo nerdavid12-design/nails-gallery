@@ -27,7 +27,7 @@ function Avatar({ name }: { name?: string | null }) {
 
 export default function PhotoCard({ photo, onClick }: PhotoCardProps) {
   return (
-    <article className="w-full overflow-hidden rounded-2xl border border-white/10 bg-black/50 shadow-2xl backdrop-blur-sm">
+    <article className="w-full overflow-hidden rounded-2xl border border-nails-magenta/20 bg-black/50 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:border-nails-magenta/50 hover:shadow-[0_0_20px_rgba(255,0,255,0.15)]">
       {/* Post header */}
       <div className="flex items-center gap-2.5 px-3 py-2.5">
         <Avatar name={photo.name} />
@@ -75,8 +75,8 @@ export default function PhotoCard({ photo, onClick }: PhotoCardProps) {
             <span className="text-white/50">צילמו/ה בתערוכה</span>
           </p>
         )}
-        <p className="mt-0.5 text-[11px] uppercase tracking-widest text-nails-magenta/60">
-          NAILZ · שחם מעבדת תרבות
+        <p className="mt-0.5 font-pixel text-[10px] tracking-widest text-nails-green/70">
+          NAILZ <span className="text-nails-magenta/50">· שחם מעבדת תרבות</span>
         </p>
       </div>
     </article>

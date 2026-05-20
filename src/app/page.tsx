@@ -15,14 +15,21 @@ export default function HomePage() {
       <CrossAccents />
 
       <div className="relative z-10 w-full max-w-md text-center">
-        <h1 className="font-display text-6xl font-bold tracking-wider text-nails-white sm:text-7xl">
-          {t("siteTitle")}
-        </h1>
-        <p className="mt-2 text-lg text-nails-magenta">{t("subtitle")}</p>
+        {/* NAILZ title — large pixel font, centered on the green orb like the poster */}
+        <div className="relative mb-2 flex items-center justify-center">
+          <h1 className="font-pixel text-8xl tracking-widest text-nails-green text-glow-green sm:text-9xl">
+            {t("siteTitle")}
+          </h1>
+        </div>
+
+        {/* Subtitle in magenta, pixel-style — matches "מחקר תרבות הלק בישראל" feel */}
+        <p className="mt-1 font-pixel text-base tracking-widest text-nails-magenta text-glow-magenta sm:text-lg">
+          {t("subtitle")}
+        </p>
 
         <WavyDivider />
 
-        <h2 className="mb-8 font-display text-2xl font-bold text-nails-green">
+        <h2 className="mb-8 font-display text-2xl font-bold text-nails-white">
           {t("uploadTitle")}
         </h2>
 
