@@ -16,25 +16,17 @@ function timeAgo(dateStr: string): string {
   return `לפני ${Math.floor(diff / 86400)} ימים`;
 }
 
-function Avatar({ name }: { name?: string | null }) {
-  const letter = name?.trim()[0]?.toUpperCase();
-  return (
-    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-nails-magenta to-nails-green text-sm font-bold text-white shadow-md">
-      {letter || "💅"}
-    </div>
-  );
-}
+// Name is saved to DB but intentionally not shown in gallery
 
 export default function PhotoCard({ photo, onClick }: PhotoCardProps) {
   return (
     <article className="w-full overflow-hidden rounded-2xl border border-nails-magenta/20 bg-black/50 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:border-nails-magenta/50 hover:shadow-[0_0_20px_rgba(255,0,255,0.15)]">
-      {/* Post header */}
+      {/* Post header — no name shown */}
       <div className="flex items-center gap-2.5 px-3 py-2.5">
-        <Avatar name={photo.name} />
+        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-nails-magenta to-nails-green text-sm shadow-md">
+          💅
+        </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-white">
-            {photo.name || "אנונימי/ת"}
-          </p>
           <p className="text-xs text-white/30">
             {timeAgo(photo.created_at)}
           </p>
@@ -69,12 +61,6 @@ export default function PhotoCard({ photo, onClick }: PhotoCardProps) {
             💅
           </span>
         </div>
-        {photo.name && (
-          <p className="text-sm text-white/80">
-            <span className="font-semibold text-white">{photo.name} </span>
-            <span className="text-white/50">צילמו/ה בתערוכה</span>
-          </p>
-        )}
         <p className="mt-0.5 font-pixel text-[10px] tracking-widest text-nails-green/70">
           NAILZ <span className="text-nails-magenta/50">· שחם מעבדת תרבות</span>
         </p>
