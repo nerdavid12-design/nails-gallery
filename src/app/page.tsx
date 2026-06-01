@@ -61,6 +61,17 @@ export default function HomePage() {
           />
         </div>
       </div>
+
+      {/* Mobile Poster — visible only on mobile, centered at bottom */}
+      <div className="relative z-10 mt-12 flex justify-center lg:hidden">
+        <Image
+          src="/nails-poster.jpg"
+          alt="NAILS Exhibit Poster"
+          width={200}
+          height={280}
+          className="rounded-lg shadow-lg"
+        />
+      </div>
     </div>
   );
 }
