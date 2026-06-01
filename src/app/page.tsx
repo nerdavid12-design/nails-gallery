@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslation } from "@/lib/i18n/useTranslation";
 import UploadForm from "@/components/upload/UploadForm";
 import RadiatingLines from "@/components/decorative/RadiatingLines";
@@ -14,26 +15,51 @@ export default function HomePage() {
       <RadiatingLines />
       <CrossAccents />
 
-      <div className="relative z-10 w-full max-w-md text-center">
-        {/* NAILZ title — large pixel font, centered on the green orb like the poster */}
-        <div className="relative mb-2 flex items-center justify-center">
-          <h1 className="font-pixel text-8xl tracking-widest text-nails-green text-glow-green sm:text-9xl">
-            {t("siteTitle")}
-          </h1>
+      <div className="relative z-10 flex w-full items-center justify-center gap-4 lg:gap-8">
+        {/* Left Poster — hidden on mobile, visible on lg+ */}
+        <div className="hidden lg:block flex-shrink-0">
+          <Image
+            src="/nails-poster.jpg"
+            alt="NAILS Exhibit Poster"
+            width={250}
+            height={350}
+            className="rounded-lg shadow-lg"
+          />
         </div>
 
-        {/* Subtitle in magenta, pixel-style — matches "מחקר תרבות הלק בישראל" feel */}
-        <p className="mt-1 font-pixel text-base tracking-widest text-nails-magenta text-glow-magenta sm:text-lg">
-          {t("subtitle")}
-        </p>
+        {/* Center Form Section */}
+        <div className="w-full max-w-md text-center">
+          {/* NAILZ title — large pixel font, centered on the green orb like the poster */}
+          <div className="relative mb-2 flex items-center justify-center">
+            <h1 className="font-pixel text-8xl tracking-widest text-nails-green text-glow-green sm:text-9xl">
+              {t("siteTitle")}
+            </h1>
+          </div>
 
-        <WavyDivider />
+          {/* Subtitle in magenta, pixel-style — matches "מחקר תרבות הלק בישראל" feel */}
+          <p className="mt-1 font-pixel text-base tracking-widest text-nails-magenta text-glow-magenta sm:text-lg">
+            {t("subtitle")}
+          </p>
 
-        <h2 className="mb-8 font-display text-2xl font-bold text-nails-white">
-          {t("uploadTitle")}
-        </h2>
+          <WavyDivider />
 
-        <UploadForm />
+          <h2 className="mb-8 font-display text-2xl font-bold text-nails-white">
+            {t("uploadTitle")}
+          </h2>
+
+          <UploadForm />
+        </div>
+
+        {/* Right Poster — hidden on mobile, visible on lg+ */}
+        <div className="hidden lg:block flex-shrink-0">
+          <Image
+            src="/nails-poster.jpg"
+            alt="NAILS Exhibit Poster"
+            width={250}
+            height={350}
+            className="rounded-lg shadow-lg"
+          />
+        </div>
       </div>
     </div>
   );

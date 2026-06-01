@@ -16,12 +16,6 @@ export default function Header() {
         </span>
       </Link>
       <div className="flex items-center gap-3">
-        <Link
-          href="/gallery"
-          className="text-sm text-nails-gray no-underline transition-colors hover:text-nails-green"
-        >
-          {t("viewGallery")}
-        </Link>
         <LanguageToggle />
         <Image
           src="/shaham-icon.png"
