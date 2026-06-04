@@ -29,6 +29,27 @@ export default function AdminPage() {
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
+  const handleDownloadCsv = () => {
+    const rows = [
+      ["Name", "Photo URL", "Time"],
+      ...photos.map((p) => [
+        p.name?.trim() || "Anonymous",
+        p.image_url,
+        new Date(p.created_at).toLocaleString(),
+      ]),
+    ];
+    const csv = rows
+      .map((r) => r.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `nailz-photos-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   const loadPhotos = useCallback(async () => {
     setLoading(true);
     try {
@@ -153,6 +174,13 @@ export default function AdminPage() {
               {t("adminSheetView")}
             </button>
           </div>
+          <button
+            onClick={handleDownloadCsv}
+            disabled={photos.length === 0}
+            className="rounded-lg border border-nails-green/50 px-4 py-2 text-sm text-nails-green transition-colors hover:bg-nails-green/10 disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            ↓ CSV
+          </button>
           <button
             onClick={handleLogout}
             className="rounded-lg border border-nails-gray/30 px-4 py-2 text-sm text-nails-gray transition-colors hover:border-nails-magenta hover:text-nails-magenta"
