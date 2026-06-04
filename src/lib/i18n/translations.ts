@@ -34,6 +34,12 @@ const translations = {
     adminQrTitle: "קוד QR לתערוכה",
     adminLogout: "יציאה",
     photoCount: "תמונות",
+    adminSheetView: "תצוגת טבלה",
+    adminGridView: "תצוגת רשת",
+    adminSheetName: "שם",
+    adminSheetTime: "זמן",
+    adminSheetPhoto: "תמונה",
+    adminAnonymous: "אנונימי/ת",
   },
   en: {
     siteTitle: "NAILZ",
@@ -70,6 +76,12 @@ const translations = {
     adminQrTitle: "QR Code for Exhibit",
     adminLogout: "Logout",
     photoCount: "photos",
+    adminSheetView: "Sheet View",
+    adminGridView: "Grid View",
+    adminSheetName: "Name",
+    adminSheetTime: "Time",
+    adminSheetPhoto: "Photo",
+    adminAnonymous: "Anonymous",
   },
 } as const;
 
